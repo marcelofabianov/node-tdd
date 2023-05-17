@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-docker",
+    "vespa-dev-works.jestRunIt",
+    "Prisma.prisma",
+    "humao.rest-client",
+    "streetsidesoftware.code-spell-checker",
+    "github.vscode-github-actions"
+  ]
+}

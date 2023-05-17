@@ -1,0 +1,15 @@
+{
+  "clearMocks": true,
+  "coverageProvider": "v8",
+  "rootDir": ".",
+  "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+  "transform": {
+    "^.+.(ts)$": ["@swc/jest"]
+  },
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json"
+    }
+  },
+  "moduleNameMapper": {}
+}

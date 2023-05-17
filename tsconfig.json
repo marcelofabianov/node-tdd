@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ES2020",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "typeRoots": [
+      "./_types",
+      "./node_modules/@types"
+    ],
+  },
+  "include": [
+    "./src/**/*",
+    "./tests/**/*",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
