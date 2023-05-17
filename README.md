@@ -13,15 +13,13 @@ Este projeto mostra como criar um servidor GraphQL utilizando as tecnologias men
 - [x] SWC
 - [x] Nodemon
 - [x] Pino
-- [x] GraphQL
-- [x] Apollo Server 4
 - [x] Jest
 - [x] Husky
 - [x] Eslint
 - [x] Prettier
 - [x] Commitizen cs-cli
 - [x] Github Actions
-- [ ] SuperTest
+- [x] SuperTest
 - [ ] Prisma PostgreSQL
 
 ### Instalação
