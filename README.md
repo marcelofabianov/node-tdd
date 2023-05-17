@@ -1,10 +1,10 @@
-# Node GraphQL
+# Node TDD
 
-Este é um exemplo de como utilizar GraphQL com Node e outras tecnologias
+Este projeto tem como objetivo realizar um estudo de modelagem de dominio guiado por TDD
 
 ### Sobre
 
-Este projeto mostra como criar um servidor GraphQL utilizando as tecnologias mencionadas acima. O TypeScript é utilizado para trazer tipagem e segurança de tipos para o código, enquanto o SWC é utilizado para compilar o código TypeScrip. O Apollo Server é utilizado para criar o servidor GraphQL em si, e o Nodemon é utilizado para reiniciar o servidor automaticamente a cada mudança no código. O Pino é um logger utilizado para logar as requisições e respostas do servidor, e o Dotenv é utilizado para carregar variáveis de ambiente a partir de um arquivo .env.
+Este projeto foi criado com o objetivo de estudar a criação de um servidor GraphQL com NodeJS, utilizando TypeScript, SWC, Nodemon, Pino, Jest, Husky, Eslint, Prettier, Commitizen cs-cli, Github Actions e SuperTest.
 
 ### Tecnologias utilizadas
 
@@ -20,7 +20,9 @@ Este projeto mostra como criar um servidor GraphQL utilizando as tecnologias men
 - [x] Commitizen cs-cli
 - [x] Github Actions
 - [x] SuperTest
-- [ ] Prisma PostgreSQL
+- [x] Prisma PostgreSQL
+
+- [ ] Start Domain
 
 ### Instalação
 

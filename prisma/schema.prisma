@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource my_db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                   String              @id @default(uuid())
+  registrationDocument String              @unique
+  name                 String              @unique
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  inactivatedAt        DateTime?
+  deletedAt            DateTime?
+  AccountMembership    AccountMembership[]
+  Contract             Contract[]
+}
+
+model User {
+  id                String              @id @default(uuid())
+  email             String              @unique
+  password          String
+  name              String
+  AccountMembership AccountMembership[]
+  Contract          Contract[]
+}
+
+model Role {
+  id                String              @id @default(uuid())
+  name              String
+  slug              String              @unique
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  inactivatedAt     DateTime?
+  deletedAt         DateTime?
+  AccountMembership AccountMembership[]
+  PermissionRole    PermissionRole[]
+}
+
+model AccountMembership {
+  id                    String    @id @default(uuid())
+  accountId             String
+  userId                String
+  roleId                String
+  contractOrganizations Json?     @my_db.Json
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  deletedAt             DateTime?
+  account               Account   @relation(fields: [accountId], references: [id])
+  role                  Role      @relation(fields: [roleId], references: [id])
+  user                  User      @relation(fields: [userId], references: [id])
+}
+
+model Permission {
+  id             String           @id @default(uuid())
+  name           String
+  slug           String           @unique
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  inactivatedAt  DateTime?
+  deletedAt      DateTime?
+  PermissionRole PermissionRole[]
+}
+
+model PermissionRole {
+  id           String     @id @default(uuid())
+  permissionId String
+  roleId       String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  role         Role       @relation(fields: [roleId], references: [id])
+
+  @@unique([permissionId, roleId])
+}
+
+model Application {
+  id            String    @id @default(uuid())
+  name          String
+  slug          String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  inactivatedAt DateTime?
+  deletedAt     DateTime?
+  Module        Module[]
+}
+
+model Module {
+  id            String      @id @default(uuid())
+  applicationId String
+  name          String
+  slug          String      @unique
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  inactivatedAt DateTime?
+  deletedAt     DateTime?
+  Feature       Feature[]
+  Application   Application @relation(fields: [applicationId], references: [id])
+}
+
+model Feature {
+  id            String    @id @default(uuid())
+  moduleId      String
+  name          String
+  slug          String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  inactivatedAt DateTime?
+  deletedAt     DateTime?
+  Module        Module    @relation(fields: [moduleId], references: [id])
+}
+
+model ContractStep {
+  id            String     @id @default(uuid())
+  name          String
+  slug          String     @unique
+  isBlocked     Boolean    @default(false)
+  messageBlock  String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  inactivatedAt DateTime?
+  deletedAt     DateTime?
+  Contract      Contract[]
+}
+
+model Contract {
+  id                      String                 @id @default(uuid())
+  contractStepId          String
+  responsabibleUserId     String
+  accountId               String
+  limiters                Json?                  @my_db.Json
+  daysToContractStepBlock Int                    @default(0)
+  createdAt               DateTime               @default(now())
+  updatedAt               DateTime               @updatedAt
+  inactivatedAt           DateTime?
+  deletedAt               DateTime?
+  Account                 Account                @relation(fields: [accountId], references: [id])
+  ContractStep            ContractStep           @relation(fields: [contractStepId], references: [id])
+  ResponsabibleUser       User                   @relation(fields: [responsabibleUserId], references: [id])
+  ContractOrganization    ContractOrganization[]
+}
+
+model Organization {
+  id                   String                 @id @default(uuid())
+  registrationDocument String                 @unique
+  name                 String
+  slug                 String                 @unique
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  inactivatedAt        DateTime?
+  deletedAt            DateTime?
+  ContractOrganization ContractOrganization[]
+}
+
+model ContractOrganization {
+  id             String       @id @default(uuid())
+  organizationId String
+  contractId     String
+  features       Json?        @my_db.Json
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+  contract       Contract     @relation(fields: [contractId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
+}
+
+model Audit {
+  id           String   @id @default(uuid())
+  userId       String
+  action       String
+  description  String
+  entity       String?
+  entityId     String?
+  entityBefore Json?    @my_db.Json
+  entityAfter  Json?    @my_db.Json
+  createdAt    DateTime @default(now())
+}

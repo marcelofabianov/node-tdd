@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    restart: always
+    build:
+      context: ./docker/local/node
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+      - '5555:5555'
+    working_dir: /backend
+    volumes:
+      - .:/backend
+      - ./docker/local/zsh/.zshrc:/home/node/.zshrc
+      - ./docker/local/zsh/.zsh_history:/home/node/.zsh_history
+    networks:
+      - node-tdd_network
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: my_db
+    restart: always
+    image: postgres:15.1
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'secret'
+      POSTGRES_DB: 'my_db'
+    volumes:
+      - 'my_db:/var/lib/postgresql/data'
+    ports:
+      - "5432:5432"
+    networks:
+      - node-tdd_network
+
+networks:
+  node-tdd_network:
+    driver: bridge
+
+volumes:
+  my_db:
+    driver: local
