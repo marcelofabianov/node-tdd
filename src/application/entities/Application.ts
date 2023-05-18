@@ -1,13 +1,15 @@
-/* eslint-disable no-unused-vars */
 import { CreateApplicationDto } from '@application/dtos/CreateApplicationDto';
+import { Module } from '@application/interfaces/entities/Module';
+import { Application as IApplication } from '@application/interfaces/entities/Application';
 
-export class Application {
+/* eslint-disable no-unused-vars */
+export class Application implements IApplication {
   private constructor(
     public readonly name: string,
     public readonly description: string,
     public readonly slug: string,
     public readonly inactivatedAt?: Date,
-    public readonly modules: string[] = [],
+    public readonly modules: Module[] = [],
   ) {}
 
   public static create(dto: CreateApplicationDto): Application {

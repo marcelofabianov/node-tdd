@@ -1,6 +1,6 @@
 import { Module } from '@application/interfaces/entities/Module';
 
-export interface CreateApplicationDto {
+export interface Application {
   name: string;
   description: string;
   slug: string;
