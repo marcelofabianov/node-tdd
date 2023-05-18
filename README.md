@@ -29,7 +29,7 @@ Este projeto foi criado com o objetivo de estudar a criação de um servidor Gra
 Para instalar o projeto, basta clonar o repositório e rodar o comando npm install na raiz do projeto.
 
 ```bash
-git clone https://github.com/marcelofabianov/node-graphQL-swc-nodemon-pino && npm install
+git clone https://github.com/marcelofabianov/node-tdd && npm install
 ```
 
 ### Execução
