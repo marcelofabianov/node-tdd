@@ -2,7 +2,10 @@
   "clearMocks": true,
   "coverageProvider": "v8",
   "rootDir": ".",
-  "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+  "testMatch": [
+    "<rootDir>/tests/**/*.test.ts",
+    "<rootDir>/**/entities/**/*.test.ts"
+  ],
   "transform": {
     "^.+.(ts)$": ["@swc/jest"]
   },
@@ -11,5 +14,7 @@
       "tsconfig": "tsconfig.json"
     }
   },
-  "moduleNameMapper": {}
+  "moduleNameMapper": {
+    "^@application/(.*)$": "<rootDir>/src/application/$1"
+  }
 }

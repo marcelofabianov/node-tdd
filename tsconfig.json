@@ -10,9 +10,11 @@
     "baseUrl": "./src",
     "outDir": "./dist",
     "typeRoots": [
-      "./_types",
       "./node_modules/@types"
     ],
+    "paths": {
+      "@application/*": ["application/*"]
+    }
   },
   "include": [
     "./src/**/*",
@@ -20,5 +22,7 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true
 }
