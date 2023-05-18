@@ -1,5 +1,5 @@
 import { CreateFeatureDto } from '@application/dtos/CreateFeatureDto';
-import { Feature as IFeature } from '@application/interfaces/entities/Feature';
+import { IFeature } from '@application/interfaces/entities/IFeature';
 
 /* eslint-disable no-unused-vars */
 export class Feature implements IFeature {

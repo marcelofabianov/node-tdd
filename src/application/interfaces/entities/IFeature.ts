@@ -1,4 +1,4 @@
-export interface Feature {
+export interface IFeature {
   name: string;
   description: string;
   slug: string;

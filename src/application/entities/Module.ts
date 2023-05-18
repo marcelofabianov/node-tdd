@@ -1,6 +1,6 @@
-import { Feature } from '@application/interfaces/entities/Feature';
+import { IFeature } from '@application/interfaces/entities/IFeature';
+import { IModule } from '@application/interfaces/entities/IModule';
 import { CreateModuleDto } from '@application/dtos/CreateModuleDto';
-import { Module as IModule } from '@application/interfaces/entities/Module';
 
 /* eslint-disable no-unused-vars */
 export class Module implements IModule {
@@ -9,7 +9,7 @@ export class Module implements IModule {
     public readonly description: string,
     public readonly slug: string,
     public readonly inactivatedAt?: Date,
-    public readonly features: Feature[] = [],
+    public readonly features: IFeature[] = [],
   ) {}
 
   public static create(dto: CreateModuleDto): Module {

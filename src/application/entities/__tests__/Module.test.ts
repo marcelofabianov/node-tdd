@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { Module } from '@application/entities/Module';
-import { Feature } from '@application/interfaces/entities/Feature';
+import { IFeature } from '@application/interfaces/entities/IFeature';
 
 describe('Module', () => {
   const name = faker.color.human();
@@ -8,14 +8,14 @@ describe('Module', () => {
   const slug = faker.lorem.slug();
   const inactivatedAt = faker.date.past();
 
-  const featureMock: Feature = {
+  const featureMock: IFeature = {
     name: faker.lorem.words(2),
     description: faker.lorem.sentence(),
     slug: faker.lorem.slug(),
     inactivatedAt: faker.date.past(),
   };
 
-  const features: Feature[] = [featureMock];
+  const features: IFeature[] = [featureMock];
 
   it('should create an instance of Module', () => {
     const module = Module.create({
